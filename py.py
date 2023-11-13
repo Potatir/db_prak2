@@ -14,25 +14,27 @@ def prints(cur):
         print(i)
 
 
-def binary(list, find):
+def binary(lis, fin):
     a = 0
-    b = len(list) - 1
-    while a<b:
-        mid = int((a+b)/2)
-        if list[mid] == find:
+    b = len(lis) -1
+    while a<=b:
+        mid = int((a+b)//2)
+        input((a, b, mid))
+        if lis[mid] == fin:
             return mid 
-        elif list[mid] < find:
-            b = mid 
-        elif list[mid] > find:
-            a = mid 
+        elif lis[mid] > fin:
+            b = mid - 1
+        elif lis[mid] < fin:
+            a = mid + 1
+        input((a, b, mid))
     return False
 
 
 
-cur.execute("drop table college")
+cur.execute("drop table if exists college")
 cur.execute("create table if not exists college(id_ serial primary key, name text);")
-cur.execute("insert into college(name) values ('john'), ('lube'), ('alzhan')")
-
+cur.execute("insert into college(name) values ('john'), ('lube'), ('alzhan'),('gg'),('aa')")
+conn.commit()
 
 
 cur.execute("SELECT * FROM college order by id_ asc")
@@ -56,17 +58,17 @@ print(binary(namb, n))
 
 
 
-while True:
-    name = input("введите ваше имя: ")
-    if name in namee:
-        print('вы еесть в бд')
-        break
-    else:
-        print("сожалею")
+# while True:
+#     name = input("введите ваше имя: ")
+#     if name in namee:
+#         print('вы еесть в бд')
+#         break
+#     else:
+#         print("сожалею")
 
 
 
-prints(namee)
+# prints(namee)
 
 conn.commit()
 cur.close()
